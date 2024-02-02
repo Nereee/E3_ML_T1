@@ -43,6 +43,7 @@ $mysqli->close();
     <meta name="keywords" content="Erreserbak, Erreserbak egitea">
     <meta name="description" content="Erreserbak egiteko gunea">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../Css/loginstyle.css">
     <link rel="stylesheet" href="../Css/style.css">
     <!-- Nunito letra mota -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
@@ -53,9 +54,10 @@ $mysqli->close();
     <nav id="menua">
         <ul>
             <li><img src="../IMG/logo1.png" alt="ElorrietaZinema logo"></li>
+            <li><a href="../index.html">EXIT</a></li>
         </ul>
     </nav>
-    <main>
+    <main class="mainlog"> 
     <form action="login.php" method="get" id="logform">
         <strong><p class="caption">SAIOA HASI</p></strong>
         <ul>

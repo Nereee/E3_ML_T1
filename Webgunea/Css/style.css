@@ -24,8 +24,7 @@ h1, h2, p, #menua ul li a {
 main{
     flex-grow: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 /* MENUAREN ESTILOAK */
@@ -97,30 +96,6 @@ footer p {
     
 }
 
-/*LOG-IN formularioa*/
-
-/*Login formularioa*/
-#logform{
-    color:white;
-    text-align: center;
-    padding:5%;
-    background-color: rgb(0, 0, 0);
-    margin-bottom: 50px;
-    border-radius: 10%;
-    
-}
-
-#logform ul li{
-    margin-top:20px;
-    margin-bottom: 40px;
-    list-style: none;
-}
-
-.caption{
-    font-size:200%;
-    margin-bottom: 30px;
-    user-select: none;
-}
 
 /* balio hauekin, weba bertikalki ondo ikus daiteke */
 @media screen and (max-width: 840px) {
