@@ -1,0 +1,93 @@
+/* "GURI BURUZ" ESTILOAK */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5vh;
+    /* COLUMN erabiltzen dugu */
+}
+
+#deskriptzioa {
+    width: 40vw;
+    border: 3px solid rgba(0, 0, 0, 0.233);
+    text-align: justify;
+    box-shadow: 20px 20px 20px rgba(30, 109, 199, 0.945);
+    /* Kutxari itzala ipintzen diogu */
+    backdrop-filter: blur(20px);
+    border: solid white;
+    /* Borrosoa agertzeko */
+
+}
+#deskriptzioa p {
+    padding: 40px;
+    font-size: 18px;
+}
+
+/* "GEHIEN IKUSITA" ESTILOAK */
+#deskriptzioa h2 {
+    text-align: center;
+    padding: 15px;
+
+}
+#pelirudi h2 {
+    margin-top: 6vh;
+    padding-bottom: 25px;
+    text-align: center;
+    border-top: solid white;
+    /* Marra zuri bat ipintzen dugu bi sekzioak diferenziatzeko */
+    margin-bottom: 4vh;
+    padding-top: 4vh;
+}
+
+#pelirudi {
+    display: flex;
+    flex-direction: column;
+}
+#gehienikusita ul {
+    width: 70vw;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    /* row erabiltzen dugu bata bestearen alboan ipintzeko
+     * eta beraien artean espazioa edukitzeko */
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* pelikulen argazkieei balio desberdinak ipini dizkiegu
+ * horrela tamaina berdina edukiko dute */
+#alien, #lebowski, #dollar, #handia {
+    border: 2px solid white;
+}
+#alien {
+    width: 195px;
+}
+#lebowski {
+    width: 200px;
+}
+#dollar {
+    width: 208px;
+}
+#handia {
+    width: 209px;
+}
+
+/* balio hauekin, weba bertikalki ondo ikus daiteke */
+@media screen and (max-width: 840px) {
+    #deskriptzioa {
+        width: fit-content;
+        width: 420px;
+    }
+    #deskriptzioa p {
+        font-size: 16px;
+    }
+    #gehienikusita ul {
+        flex-direction: column;
+    }
+
+    #alien, #lebowski, #dollar, #handia {
+        width: 175px;
+    }
+}
