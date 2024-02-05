@@ -1,0 +1,106 @@
+
+#container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    margin-bottom: 50px;
+}
+
+/* Pelikulen Estiloak */
+.irudiak h2 {
+    color: rgb(255, 255, 255);
+    margin-top: 6vh;
+    padding-bottom: 25px;
+    border-top: solid white;
+    margin-right: 21%;
+    margin-bottom: 4vh;
+    padding-top: 4vh;
+}
+
+.irudiak1 h2{
+    color: rgb(255, 255, 255);
+    margin-top: 6vh;
+    padding-bottom: 25px;
+    margin-right: 21%;
+    margin-bottom: 4vh;
+    padding-top: 4vh;
+}
+.irudiak , .irudiak1 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-top: 50px;
+}
+
+.pelikulak ul {
+    width: 70vw;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.nuestrocontenedor {
+    position: relative;
+    box-sizing: border-box;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+  .nuestrocontenedor:hover{  
+    transform: scale(1.1); /* Sagua gainetik pasatzerakoan argazkia handituko da  */
+    transition: transform 0.3s;
+ }  
+
+.pelis {
+    width: 100%;
+    border: 2px solid white;
+    display: block;
+    height: 500px;
+}
+
+.nuestrobloque {  
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 1.5s ease;
+    background-color: #3844b1;
+    
+}
+
+.nuestrocontenedor:hover .nuestrobloque { 
+    opacity: 0.9;
+}
+.nuestrotexto {
+    color: white;
+    font-size: 1em;
+    position: absolute;
+    text-align: justify;
+    padding: 5px;
+}
+
+@media screen and (max-width: 1670px) {
+    
+    .pelikulak ul{
+    flex-wrap: wrap;
+    flex-direction: column;
+    }   
+
+    .irudiak, .irudiak1 h2{
+        text-align: center;
+    }
+
+    .nuestrocontenedor{
+        margin-bottom: 50px;
+    }
+}
