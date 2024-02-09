@@ -1,0 +1,71 @@
+/* Reset de estilos para eliminar márgenes y padding predeterminados */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo básico para el cuerpo del formulario */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+}
+
+/* Estilo para el contenedor del formulario */
+form {
+    width: 85%; /* Ajusta el ancho según tus preferencias */
+    max-width: 700px; /* Establece un ancho máximo */
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px; /* Aumenta el padding */
+    border-radius: 15px; /* Aumenta el radio de borde */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+}
+
+/* Estilo para la lista no ordenada */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilo para cada elemento de la lista */
+li {
+    margin-bottom: 20px; /* Aumenta el margen inferior */
+}
+
+/* Estilo para las etiquetas de los campos */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px; /* Aumenta el margen inferior */
+    font-size: 16px; /* Aumenta el tamaño de la fuente */
+}
+
+/* Estilo para los selectores */
+select, input[type="date"] {
+    width: 100%;
+    padding: 15px; /* Aumenta el padding */
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Aumenta el radio de borde */
+    font-size: 16px; /* Aumenta el tamaño de la fuente */
+}
+
+/* Estilo para el botón de submit */
+input[type="submit"] {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 15px 25px; /* Aumenta el padding */
+    border: none;
+    border-radius: 8px; /* Aumenta el radio de borde */
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Estilo para el botón de submit al pasar el ratón por encima */
+input[type="submit"]:hover {
+    background-color: #27ae60;
+}

@@ -1,0 +1,62 @@
+#zinemak {
+    /* section-a soberan dagoen espazioa hartzen du.
+     * Horrela footerra behean geratzen da */
+    flex-grow: 1;
+}
+#goikokutxa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2em;
+    flex-grow: 1;
+    
+}
+#behekokutxa {
+    display: flex;
+    flex-direction: row;
+    /* elementueei beraien artean espazioa ipini diegu */
+    justify-content: space-around;
+    flex-grow: 1;
+}
+.maps {
+    /* padding txiki bat maps-aren irudiari */
+    padding: 20px;
+}
+.zinemarendesk {
+    width: 30em;
+}
+
+/*Film erreserbaren formularioa*/
+#form-erreserba{
+    color:white;
+    background-image: url(../IMG/fondo-formulario.avif);
+    text-align: center;
+    margin-left:475px;
+    margin-right: 475px;
+    margin-top:30px;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    
+}
+
+#form-erreserba ul li{
+
+    margin-bottom: 20px;
+    list-style:none;
+}
+
+/* balio hauekin, weba bertikalki ondo ikus daiteke */
+@media screen and (max-width: 960px) {
+    #goikokutxa, #behekokutxa {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .zinemarendesk {
+        width: 100%; 
+        font-size: 14px;
+    }
+    #zinemak h2 {
+        font-size: 20px;
+    }
+}
