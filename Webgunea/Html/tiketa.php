@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <?php 
 session_start();
 ?>
 
+=======
+>>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
 <!DOCTYPE html>
 <html lang="eu">
 
@@ -20,10 +23,14 @@ session_start();
     <script>
 
         function zinemak(){
+<<<<<<< HEAD
 
             var zinema  = document.getElementById("zinema");
             <?php
             
+=======
+            <?php
+>>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
             $mysqli = new mysqli("localhost","root","", "db_zinema");
             $sql = "SELECT id_zinema,izena FROM zinema";
             $result = $mysqli->query($sql);
@@ -42,8 +49,13 @@ session_start();
                 ?>
                 document.getElementById('zinema').value = "<?php echo $_GET['zinema']?>";
                 <?php       
+<<<<<<< HEAD
                 $zinemaid = $_GET['zinema'];          
                 $sql = "SELECT DISTINCT id_filma,izena FROM filma JOIN saioa using (id_filma)  WHERE id_zinema = $zinemaid";
+=======
+                $zinema = $_GET['zinema'];          
+                $sql = "SELECT id_filma,izena FROM filma JOIN saioa using (id_filma)  WHERE id_zinema = $zinema";
+>>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
                 $result = $mysqli->query($sql);
                 while ($row = $result->fetch_assoc()) {
                 ?>
@@ -62,6 +74,7 @@ session_start();
                 <?php
             }
             ?>
+<<<<<<< HEAD
             <?php
             if(isset($_GET['zinema']) & isset($_GET['filmaizena']) & isset($_GET['data'])){
                 ?>
@@ -69,6 +82,8 @@ session_start();
                 <?php
             }
             ?>
+=======
+>>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
         }
 
         function rekargatuZ(){
@@ -84,6 +99,7 @@ session_start();
         }
 
         function rekargatuD(){
+<<<<<<< HEAD
             <?php
              if(isset($_GET['zinema']) & isset($_GET['filmaizena'])){
                      $zinema = $_GET['zinema'];
@@ -116,6 +132,14 @@ session_start();
          }
         
 
+=======
+            if(isset($_GET['zinema']) & isset($_GET['filmaizena'])){
+            
+            }else{
+                window.alert("Guztia ondo bete!");
+            }
+        }
+>>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
     </script>
 </head>
 <body onload="zinemak()">
@@ -141,7 +165,11 @@ session_start();
             
             <li>
                 <label for="eguna">EGUNA: </label>
+<<<<<<< HEAD
                 <input type="date" name="eguna" id="eguna" min="2024-02-01" max="2024-03-01" onchange="rekargatuD()">
+=======
+                <input type="date" name="eguna" id="eguna" onchange="rekargatuD()">
+>>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
             </li>
 
             <li>
