@@ -1,6 +1,6 @@
 <?php
-
-if(isset($_GET['izena']) && $_GET ['pasahitza']){
+session_start();
+if(isset($_POST['izena']) && $_POST ['pasahitza']){
 	
 $servername = "localhost";
 $username = "root";
@@ -17,8 +17,12 @@ if ($mysqli->connect_error) {
 
 //Kontsulta
 
-$izena = $_GET["izena"];
-$pwd = $_GET["pasahitza"]; 
+$izena = $_POST["izena"];
+$pwd = $_POST["pasahitza"]; 
+
+
+
+
 $kontsulta = "select izena from erabiltzaile where izena = '$izena' and pasahitza = '$pwd'";
 $result = $mysqli->query($kontsulta);
 
@@ -39,12 +43,12 @@ $mysqli->close();
 <head>
     <title>Elorrieta zinema - Erreserbak</title>
     <meta charset="UTF-8">
-    <meta name="author" content="Matrillu">
-    <meta name="keywords" content="Erreserbak, Erreserbak egitea">
-    <meta name="description" content="Erreserbak egiteko gunea">
+    <meta name="author" content="1.taldea">
+    <meta name="keywords" content="Login, Login egitea">
+    <meta name="description" content="login egiteko gunea">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../Css/loginstyle.css">
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href = "../Css/style.css">
+    <link rel = "stylesheet" href = "../Css/loginstyle.css">
     <!-- Nunito letra mota -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
 </head>
@@ -58,17 +62,17 @@ $mysqli->close();
         </ul>
     </nav>
     <main class="mainlog"> 
-    <form action="login.php" method="get" id="logform">
+    <form action="login.php" method="post" id="logform">
         <strong><p class="caption">SAIOA HASI</p></strong>
         <ul>
             <li>
                 <label for="izena">Erabiltzailea : </label>
-                <input type="text" id="izena" name="izena" placeholder="Idatzi hemen zure erabiltzailearen izena">
+                <input type="text" id="izena" name="izena" placeholder="Idatzi hemen zure erabiltzailearen izena" required>
             </li>
 
             <li>
-                <label for="pasahitza">Pasahitza : </labeñ>
-                <input type="password" id="pasahitza" name="pasahitza" placeholder="Idatzi zure pasahitza">
+                <label for="pasahitza">Pasahitza : </label>
+                <input type="password" id="pasahitza" name="pasahitza" placeholder="Idatzi zure pasahitza" required>
             </li>
 
         </ul>
