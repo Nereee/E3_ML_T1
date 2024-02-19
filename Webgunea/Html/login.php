@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
 session_start();
 if(isset($_POST['izena']) && $_POST ['pasahitza']){
-=======
-
-if(isset($_GET['izena']) && $_GET ['pasahitza']){
->>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
 	
 $servername = "localhost";
 $username = "root";
@@ -22,28 +17,20 @@ if ($mysqli->connect_error) {
 
 //Kontsulta
 
-<<<<<<< HEAD
 $izena = $_POST["izena"];
 $pwd = $_POST["pasahitza"]; 
 
 
 
 
-=======
-$izena = $_GET["izena"];
-$pwd = $_GET["pasahitza"]; 
->>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
 $kontsulta = "select izena from erabiltzaile where izena = '$izena' and pasahitza = '$pwd'";
 $result = $mysqli->query($kontsulta);
 
 if($result->num_rows > 0){
-<<<<<<< HEAD
     header("Location: tiketa.php");
-=======
-    header("Location: tiketa.php?erabiltzaile=$izena");
->>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
 }else{
-    echo "Pasahitza edo erabiltzailea ez dira zuzenak";
+    $var = "Erabiltzaile hau ez da existitzen";
+    echo "<script> alert('".$var."'); </script>";
 }
 
 // Konexioa itxi
@@ -76,11 +63,7 @@ $mysqli->close();
         </ul>
     </nav>
     <main class="mainlog"> 
-<<<<<<< HEAD
     <form action="login.php" method="post" id="logform">
-=======
-    <form action="login.php" method="get" id="logform">
->>>>>>> 854e097836e85ec65cd1834983e1c8c6533ed2f9
         <strong><p class="caption">SAIOA HASI</p></strong>
         <ul>
             <li>
