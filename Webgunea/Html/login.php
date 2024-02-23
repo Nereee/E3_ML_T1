@@ -1,11 +1,12 @@
 <?php
 session_start();
-if(isset($_POST['izena']) && $_POST ['pasahitza']){
+
+if(isset($_GET['izena']) && $_GET ['pasahitza']){
 	
 $servername = "localhost";
 $username = "root";
 $password = "";
-$db = "db_zinema";
+$db = "db_zinema1";
 
 // Konexioa sortu
 $mysqli = new mysqli($servername, $username, $password, $db);
@@ -17,20 +18,18 @@ if ($mysqli->connect_error) {
 
 //Kontsulta
 
-$izena = $_POST["izena"];
-$pwd = $_POST["pasahitza"]; 
-
-
-
-
-$kontsulta = "select izena from erabiltzaile where izena = '$izena' and pasahitza = '$pwd'";
+$izena = $_GET["izena"];
+$pwd = $_GET["pasahitza"]; 
+$kontsulta = "select izena, id_erabiltzaile from erabiltzaile where izena = '$izena' and pasahitza = '$pwd'";
 $result = $mysqli->query($kontsulta);
 
 if($result->num_rows > 0){
-    header("Location: tiketa.php");
+    $row = $result->fetch_assoc();
+    $_SESSION['id_bezero'] = $row['id_erabiltzaile'];
+    $_SESSION['izena'] = $row['izena'];
+    header("Location: tiketa.php?erabiltzaile=$izena");
 }else{
-    $var = "Erabiltzaile hau ez da existitzen";
-    echo "<script> alert('".$var."'); </script>";
+    echo "Pasahitza edo erabiltzailea ez dira zuzenak";
 }
 
 // Konexioa itxi
@@ -63,7 +62,7 @@ $mysqli->close();
         </ul>
     </nav>
     <main class="mainlog"> 
-    <form action="login.php" method="post" id="logform">
+    <form action="login.php" method="get" id="logform">
         <strong><p class="caption">SAIOA HASI</p></strong>
         <ul>
             <li>

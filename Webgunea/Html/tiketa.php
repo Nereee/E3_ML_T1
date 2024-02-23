@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 
@@ -13,18 +13,17 @@ session_start();
     <meta name="description" content="Erreserbak egiteko gunea">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../Css/style.css">
-    < <link rel="stylesheet" href="../Css/ticketa.css">
+    <link rel="stylesheet" href="../Css/ticketa.css">
     <!-- Nunito letra mota -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
 
     <script>
 
         function zinemak(){
-
-            var zinema  = document.getElementById("zinema");
             <?php
-            
-            $mysqli = new mysqli("localhost","root","", "db_zinema");
+            $mysqli = new mysqli("localhost","root","", "db_zinema1");
+
+            //zinema zerrenda berreskuratzen
             $sql = "SELECT id_zinema,izena FROM zinema";
             $result = $mysqli->query($sql);
             while ($row = $result->fetch_assoc()) {
@@ -33,17 +32,18 @@ session_start();
                     aukera.value = "<?php echo $row['id_zinema']; ?>";
                     aukera.textContent = "<?php echo $row['izena']; ?>";
                     zinema.appendChild(aukera);
-    
                 <?php
                 }
             ?>
+
+            //Pelikula zerrenda berreskuratzen baldin eta zinema aukeratuta dagoen
             <?php
                 if(isset($_GET['zinema'])){
                 ?>
                 document.getElementById('zinema').value = "<?php echo $_GET['zinema']?>";
                 <?php       
-                $zinemaid = $_GET['zinema'];          
-                $sql = "SELECT DISTINCT id_filma,izena FROM filma JOIN saioa using (id_filma)  WHERE id_zinema = $zinemaid";
+                $zinema = $_GET['zinema'];          
+                $sql = "SELECT id_filma,izena FROM filma JOIN saioa using (id_filma)  WHERE id_zinema = $zinema";
                 $result = $mysqli->query($sql);
                 while ($row = $result->fetch_assoc()) {
                 ?>
@@ -51,6 +51,7 @@ session_start();
                     aukera.value = "<?php echo $row['id_filma']; ?>";
                     aukera.textContent = "<?php echo $row['izena']; ?>";
                     document.getElementById('filmaizena').appendChild(aukera);
+            
                 <?php
                 }
             }
@@ -63,14 +64,46 @@ session_start();
             }
             ?>
             <?php
-            if(isset($_GET['zinema']) & isset($_GET['filmaizena']) & isset($_GET['data'])){
-                ?>
-                document.getElementById('eguna').value = "<?php echo $_GET['data']?>";
+                if(isset($_GET['zinema']) && isset($_GET['filmaizena']) && isset($_GET['eguna']) ){
+                    ?>
+                document.getElementById('eguna').value = "<?php echo $_GET['eguna']?>";
                 <?php
             }
             ?>
-        }
 
+            //Saioak berreskuratu zinema eta filma eta data aukeratuta dagoen
+            <?php
+            if(isset($_GET['zinema']) && isset($_GET['filmaizena']) && isset($_GET['eguna'])){
+
+                        $zinema = $_GET['zinema'];
+                        $filma = $_GET['filmaizena'];
+                        $eguna = $_GET['eguna'];
+                       
+               
+                        $kontsulta = "select a.izena,s.hasiera_ordua, prezioa, id_saioa from SAIOA s join areto a using(id_areto,id_zinema) where s.id_filma=$filma AND s.saioa_data='$eguna' and s.id_zinema=$zinema";
+                        $result = $mysqli->query($kontsulta);
+               
+                        if($result->num_rows > 0) {
+                           
+                       while ($row = $result ->fetch_assoc()){
+                        
+                           ?>
+                           
+                           var aukera = document.createElement("option");
+                           aukera.value = "<?php echo $row['id_saioa']; ?>";
+                           aukera.textContent = "<?php echo $row['hasiera_ordua']; ?>";
+                           document.getElementById('saioak').appendChild(aukera);
+
+                           
+                          // window.location = window.location.pathname + "?zinema=" + zinema.value + "&filmaizena=" + filma.value + "&eguna=" + eguna.value + "&hasiera_ordua" + ordua.value;
+                       <?php
+
+                       }                  
+                    
+                    }
+                }
+                ?>
+        }
         function rekargatuZ(){
             let zinema = document.getElementById("zinema");
             window.location = window.location.pathname + "?zinema="+zinema.value;
@@ -85,42 +118,41 @@ session_start();
 
         function rekargatuD(){
             <?php
-             if(isset($_GET['zinema']) & isset($_GET['filmaizena'])){
+             if (isset($_GET['zinema']) && isset($_GET['filmaizena'])){
+
+
                      $zinema = $_GET['zinema'];
-                     $filma = $_GET['filmaizena'];          
+                     $filma = $_GET['filmaizena'];
+
                      $kontsulta = "select saioa_data from SAIOA where id_zinema=$zinema AND id_filma=$filma";
                      $result = $mysqli->query($kontsulta);
 
                      if($result->num_rows > 0){
-                ?>
-                     let data = document.getElementById("eguna");
+                    ?>
+                     let eguna = document.getElementById("eguna");
                      let filma = document.getElementById("filmaizena");
                      let zinema = document.getElementById("zinema");
-                     window.location = window.location.pathname + "?zinema=" + zinema.value + "&filmaizena=" + filma.value + "&data=" + data.value;
-                    /*Saio posibleak atera -->*/
-                    <?php
-                    // $zinema = $_GET['zinema'];
-                     //$filma = $_GET['filmaizena'];
-                     //$data = $_GET['data'];          
-                     //$kontsulta = "select saioa_data from SAIOA where id_zinema=$zinema AND id_filma=$filma";                    
-                    ?>
-            <?php 
-                }else{ 
-            ?>
-                 window.alert("Guztia ondo bete!");
-             
-             <?php
-                 }
-             }
-                ?>
-         }
-        
+                   
+                     window.location = window.location.pathname + "?zinema="+zinema.value+"&filmaizena="+filma.value + "&eguna=" + eguna.value ;
+                     
+                     <?php
+                     } else{
+                         ?>
+                        
+                document.getElementById("errorea").style.display = "none";
+                <?php
 
-    </script>
+             }            
+         }
+        ?>
+        }
+     
+      
+</script>
 </head>
 <body onload="zinemak()">
 <main class="erreserbaform" > 
-  <form action="tiketa.php" method="get" id="tiketaform">
+  <form action="erosketa.php" method="get" id="tiketaform">
         <ul>
             <li>
                 <label for="zinema">ZINEMA: </label>
@@ -141,24 +173,29 @@ session_start();
             
             <li>
                 <label for="eguna">EGUNA: </label>
-                <input type="date" name="eguna" id="eguna" min="2024-02-01" max="2024-03-01" onchange="rekargatuD()">
+                <input type="date" name="eguna" id="eguna" onchange="rekargatuD()">
+                <p id="errorea" style="display:block;">Egun horretan ez daude saiorik</p>
             </li>
-
+            <!--onchange="rekargatuS()"-->
             <li>
                 <label for="saioak">SAIOA: </label>
-                <select id="saioak" name="saioak">
+                <select name="saioak" id="saioak" >
+            
 
                     <option></option>
 
                 </select>
 
             </li>
+            <li>
+            <label for="kant">KANTITATEA: </label>
+                <input type="number" name="kant" id="kant">
+    </li>
 
             
         </ul>
         <input type="submit" name="EROSI" value="EROSI">
     </form>
-    
 </main>
      <!-- Footerra zinemaren informazioarekin eta lokalizazioa -->
      <footer>
