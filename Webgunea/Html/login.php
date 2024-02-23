@@ -29,7 +29,7 @@ if($result->num_rows > 0){
     $_SESSION['izena'] = $row['izena'];
     header("Location: tiketa.php?erabiltzaile=$izena");
 }else{
-    echo "Pasahitza edo erabiltzailea ez dira zuzenak";
+  
 }
 
 // Konexioa itxi
@@ -63,7 +63,7 @@ $mysqli->close();
     </nav>
     <main class="mainlog"> 
     <form action="login.php" method="get" id="logform">
-        <strong><p class="caption">SAIOA HASI</p></strong>
+        <strong><p class="caption"></p></strong>
         <ul>
             <li>
                 <label for="izena">Erabiltzailea : </label>
@@ -73,6 +73,11 @@ $mysqli->close();
             <li>
                 <label for="pasahitza">Pasahitza : </label>
                 <input type="password" id="pasahitza" name="pasahitza" placeholder="Idatzi zure pasahitza" required>
+            </li>
+
+            <li>
+                <label for="error"></label>
+                <span id="error"><?php if(isset($_GET['izena']) && isset($_GET['pasahitza'])) {echo "Pasahitza edo erabiltzailea ez dira zuzenak, berriro saiatu mesedez";} ?></span>
             </li>
 
         </ul>
